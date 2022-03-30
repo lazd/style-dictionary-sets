@@ -1,0 +1,9 @@
+{
+  "accent-content-color-hover": {
+    "ref": "{accent-color-1000}",
+    "value": "rgb(64, 70, 202)"
+  },
+  "accent-color-1000": {
+    "value": "rgb(64, 70, 202)"
+  }
+}

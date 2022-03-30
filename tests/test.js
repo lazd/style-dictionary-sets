@@ -69,3 +69,14 @@ test("should handle multi nested values", () => {
   );
   expect(expected).toMatchObject(result);
 });
+
+test("should exclude set values when config set", () => {
+  const filename = "exclusive-set.json";
+  const sd = StyleDictionary.extend(generateConfig(filename));
+  sd.buildAllPlatforms();
+  const expected = helpers.fileToJSON(`./tests/expected/${filename}`);
+  const result = helpers.fileToJSON(
+    path.join(helpers.outputDir, filename)
+  );
+  expect(expected).toMatchObject(result);
+});

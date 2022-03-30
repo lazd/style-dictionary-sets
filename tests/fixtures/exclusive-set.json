@@ -1,0 +1,15 @@
+{
+  "accent-content-color-hover": {
+    "value": "{accent-color-1000}"
+  },
+  "accent-color-1000": {
+    "sets": {
+      "spectrum": {
+        "value": "rgb(0, 84, 182)"
+      },
+      "express": {
+        "value": "rgb(64, 70, 202)"
+      }
+    }
+  }
+}
