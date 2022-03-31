@@ -26,8 +26,8 @@ const generateConfig = (filename) => {
         ],
       },
     },
-  }
-}
+  };
+};
 
 beforeEach(() => {
   helpers.clearOutput();
@@ -42,9 +42,7 @@ test("a ref pointing to a set should include all values", () => {
   const sd = StyleDictionary.extend(generateConfig(filename));
   sd.buildAllPlatforms();
   const expected = helpers.fileToJSON(`./tests/expected/${filename}`);
-  const result = helpers.fileToJSON(
-    path.join(helpers.outputDir, filename)
-  );
+  const result = helpers.fileToJSON(path.join(helpers.outputDir, filename));
   expect(expected).toMatchObject(result);
 });
 
@@ -53,9 +51,7 @@ test("a ref that points to additional refs should resolve", () => {
   const sd = StyleDictionary.extend(generateConfig(filename));
   sd.buildAllPlatforms();
   const expected = helpers.fileToJSON(`./tests/expected/${filename}`);
-  const result = helpers.fileToJSON(
-    path.join(helpers.outputDir, filename)
-  );
+  const result = helpers.fileToJSON(path.join(helpers.outputDir, filename));
   expect(expected).toMatchObject(result);
 });
 
@@ -64,19 +60,20 @@ test("should handle multi nested values", () => {
   const sd = StyleDictionary.extend(generateConfig(filename));
   sd.buildAllPlatforms();
   const expected = helpers.fileToJSON(`./tests/expected/${filename}`);
-  const result = helpers.fileToJSON(
-    path.join(helpers.outputDir, filename)
-  );
+  const result = helpers.fileToJSON(path.join(helpers.outputDir, filename));
   expect(expected).toMatchObject(result);
 });
 
 test("should exclude set values when config set", () => {
   const filename = "exclusive-set.json";
-  const sd = StyleDictionary.extend(generateConfig(filename));
+  const config = generateConfig(filename);
+  config.platforms.JSON.files[0].options = {
+    ...config.platforms.JSON.files[0].options,
+    ...{ set: "express" },
+  };
+  const sd = StyleDictionary.extend(config);
   sd.buildAllPlatforms();
   const expected = helpers.fileToJSON(`./tests/expected/${filename}`);
-  const result = helpers.fileToJSON(
-    path.join(helpers.outputDir, filename)
-  );
+  const result = helpers.fileToJSON(path.join(helpers.outputDir, filename));
   expect(expected).toMatchObject(result);
 });
