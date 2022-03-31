@@ -18,7 +18,7 @@ const getValue = (token, dictionary, options) => {
     if (isASet(token.value)) {
       const sets = {};
       for (const setName in token.value.sets) {
-        sets[setName] = getValue(token.value.sets[setName], dictionary);
+        sets[setName] = getValue(token.value.sets[setName], dictionary, options);
       }
       return { ref, sets };
     } else {
