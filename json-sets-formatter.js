@@ -11,7 +11,8 @@ const isASet = (value) => {
   return isObject(value) && "sets" in value;
 };
 
-const getValue = (token, dictionary) => {
+const getValue = (token, dictionary, options) => {
+  const set = options.set || false;
   if (dictionary.usesReference(token.original.value)) {
     const ref = token.original.value;
     if (isASet(token.value)) {
@@ -31,7 +32,7 @@ const getValue = (token, dictionary) => {
 const formatter = ({ dictionary, platform, file, options }) => {
   let resultObj = {};
   dictionary.allTokens.forEach((token) => {
-    const value = getValue(token, dictionary);
+    const value = getValue(token, dictionary, options);
     resultObj = merge(resultObj, pathToObj(token.path, value));
   });
   return JSON.stringify(resultObj, null, 2);
